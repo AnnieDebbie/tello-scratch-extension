@@ -1,4 +1,7 @@
-# Tello Scratch Extension
+# Tello Scratch Extension for Chinese
+
+## Thank mather for this better version than the factory default scripts
+  below is the original instruction from mather
 
 This is an extenstion scripts for [Scratch2 Offline Editor](https://scratch.mit.edu/download) to control [Tello](https://www.ryzerobotics.com/tello)
 
@@ -14,5 +17,9 @@ See `Scratch README` at [Tello Downloads](https://www.ryzerobotics.com/tello/dow
 - Japanese blocks.
 - All Scratch blocks will pause until the command ends.
 
+# Newly added by yiupa
 
+- make speed setting workable
+- change the Japanese to Chinese
+- scratch can now read battery level and speed back from tello
 

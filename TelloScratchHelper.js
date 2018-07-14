@@ -29,6 +29,11 @@ socket.on("listening", () => {
 });
 
 socket.on("message", (msg, rinfo) => {
+	if (lastCommand == 'battery?' && !isNaN(msg.toString('utf8'))){
+//	 console.log("battery=%s",msg.toString('utf8') );
+     batteryPower=msg.toString('utf8');
+
+  }
   showTelloLog("=> " + decodeURIComponent(msg));
   //showTelloLog("=> " + JSON.stringify(rinfo))
 });
@@ -44,23 +49,26 @@ socket.on("close", () => {
 const sendToTello = msg => {
   socket.send(msg, TELLO_PORT, TELLO_HOST, (error, bytes) => {
     showTelloLog("<= " + msg);
+	lastCommand=msg;
   });
 };
 
-socket.bind();
+socket.bind(TELLO_PORT);
 
 var busyId = null;
 var speed = 100.0; // cm/s
+var lastCommand ="";
+var batteryPower='20';
 
 const directionMapping = {
   前: "f",
-  後ろ: "b",
+  後: "b",
   左: "l",
   右: "r",
-  左斜め前: "lf",
-  左斜め後ろ: "lb",
-  右斜め前: "rf",
-  右斜め後ろ: "rb"
+  左前斜: "lf",
+  左後斜: "lb",
+  右前斜: "rf",
+  右後斜: "rb"
 };
 
 // HTTP (Scratch <-> Helper)
@@ -77,7 +85,11 @@ http
     switch (paths[1]) {
       case "poll":
         if (busyId == null) {
-          res.end("");
+			sendToTello("command");
+			sendToTello("battery?");
+			var data = "power " + batteryPower + "\n" + "speed " + speed + "\n"
+			res.end(data);
+//			console.log("power " + batteryPower + "\n" );
         } else {
           var data = "_busy " + busyId;
           //showScratchLog("<= " + data);
@@ -180,13 +192,13 @@ http
 
       case "setspeed":
         jobId = paths[2];
-        busyId = jobId;
+        busyId = null;
         requestedSpeed = parseInt(paths[3]);
         if (requestedSpeed >= 1 && requestedSpeed <= 100) {
           speed = requestedSpeed;
         }
-        sendToTello("speed " + paths[2]);
-        data = "OK 10";
+        sendToTello("speed " + speed);
+        data = "OK";
         res.end(data);
         showScratchLog("<= " + data);
         return;
