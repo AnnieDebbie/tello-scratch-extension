@@ -30,16 +30,20 @@ See `Scratch README` at [Tello Downloads](https://www.ryzerobotics.com/tello/dow
 源於mather改寫的日語版本
 
 相比廠家原版，mather版本引入了跟據當前飛行速度為每個命令加入了適當的延時。
+
 原有版本沒有延時的，若多個命令從scratc快速傳給Tello就會因tello正在執行命令時，
+
 因不能接收其後的命令引致程序執行錯誤。
 
-mather改寫的版本speed命令有個bug已更正，現版本加入了scratch可讀tello 電量和當前飛行速度。
+mather改寫的版本speed命令有個bug已更正，
+現版本加入了scratch可讀tello 電量和當前飛行速度。
 
 ## 使用
 
 - 安裝 Scratch2 Offline Editor( https://scratch.mit.edu/download )
+
 - 按於 (https://www.ryzerobotics.com/tello/downloads) 下載的 `Scratch README` 內指示做
 
-用 `TelloKanji.s2e` 取代 `Tello.s2e`.
-用`TelloScratchHelper.js` 取代 `Tello.js`
+- 用 `TelloKanji.s2e` 取代 `Tello.s2e`
+- 用`TelloScratchHelper.js` 取代 `Tello.js`
 
