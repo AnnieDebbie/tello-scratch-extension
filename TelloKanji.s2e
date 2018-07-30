@@ -4,85 +4,85 @@
     "blockSpecs": [
         [
             "w",
-            "起飛",
+            "takeoff",
             "takeoff"
         ],
         [
             "w",
-            "降落",
+            "land",
             "land"
         ],
         [
             "w",
-            "升高 %n cm",
+            "fly up with distance %n cm",
             "up",
             20
         ],
         [
             "w",
-            "下降 %n cm",
+            "fly down with distance %n cm",
             "down",
             20
         ],
         [
             "w",
-            "向左飛 %n cm",
+            "fly left with distance %n cm",
             "left",
             20
         ],
         [
             "w",
-            "向右飛 %n cm",
+            "fly right with distance %n cm",
             "right",
             20
         ],
         [
             "w",
-            "向前飛 %n cm",
+            "fly forward with distance %n cm",
             "forward",
             20
         ],
         [
             "w",
-            "向後飛 %n cm",
+            "fly backward with distance %n cm",
             "back",
             20
         ],
         [
             "w",
-            "向右旋轉 %n 度",
+            "rotate CW with angle %n degree",
             "cw",
             90
         ],
         [
             "w",
-            "向左旋轉 %n 度",
+            "rotate CCW with angle %n degree",
             "ccw",
             90
         ],
         [
             "w",
-            "向 %m.flipDirection 翻滾",
+            "flip %m.flipDirection",
             "flip",
-            "前"
+            "forward"
         ],
-				["r", "電量", "power"
+		["r", "power", "power"
 		],
-		["r", "飛行速度", "speed"
+		["r", "speed", "speed"
 		],
         [
             "w",
-            "設定飛行速度 每秒%n cm",
+            "set speed to %n cm/s",
             "setspeed",
             80
         ]
     ],
     "menus": {
         "flipDirection": [
-            "前",
-            "後",
-            "左",
-            "右"
+            "forward",
+            "backward",
+            "left",
+            "right"
         ]
     }
 }

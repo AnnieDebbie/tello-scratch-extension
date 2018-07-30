@@ -66,10 +66,10 @@ socket.bind(TELLO_PORT);
 
 
 const directionMapping = {
-  前: "f",
-  後: "b",
-  左: "l",
-  右: "r"
+  forward: "f",
+  backward: "b",
+  left: "l",
+  right: "r"
 };
 
 // HTTP (Scratch <-> Helper)
