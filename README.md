@@ -23,3 +23,6 @@ See `Scratch README` at [Tello Downloads](https://www.ryzerobotics.com/tello/dow
 - change the Japanese to Chinese
 - scratch can now read battery level and speed back from tello
 
+# Upate to English version
+
+- change from Chinese to English language for Scratch extension
