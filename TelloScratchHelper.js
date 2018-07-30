@@ -24,11 +24,18 @@ const showTelloLog = msg => {
 // UDP (Helper <-> Tello)
 const socket = dgram.createSocket("udp4");
 
+var busyId = null;
+var speed = 100.0; // cm/s
+var lastCommand ="";
+var batteryPower='20';
+var polling = "";
+
 socket.on("listening", () => {
   showTelloLog("Listening UDP...");
 });
 
 socket.on("message", (msg, rinfo) => {
+	if ( polling=="poll" ) return;
 	if (lastCommand == 'battery?' && !isNaN(msg.toString('utf8'))){
 //	 console.log("battery=%s",msg.toString('utf8') );
      batteryPower=msg.toString('utf8');
@@ -48,27 +55,21 @@ socket.on("close", () => {
 
 const sendToTello = msg => {
   socket.send(msg, TELLO_PORT, TELLO_HOST, (error, bytes) => {
-    showTelloLog("<= " + msg);
+	  if (polling=="") {
+	  showTelloLog("<= " + msg); }
 	lastCommand=msg;
   });
 };
 
 socket.bind(TELLO_PORT);
 
-var busyId = null;
-var speed = 100.0; // cm/s
-var lastCommand ="";
-var batteryPower='20';
+
 
 const directionMapping = {
   前: "f",
   後: "b",
   左: "l",
-  右: "r",
-  左前斜: "lf",
-  左後斜: "lb",
-  右前斜: "rf",
-  右後斜: "rb"
+  右: "r"
 };
 
 // HTTP (Scratch <-> Helper)
@@ -81,6 +82,11 @@ http
     if (!requestUrl.pathname.startsWith("/poll")) {
       showScratchLog("=> " + pathname);
     }
+	if (paths[1] == "poll" ){
+	polling = "poll" ; }
+	else {
+	polling = "" ; 
+	}
 
     switch (paths[1]) {
       case "poll":
